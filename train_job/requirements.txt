@@ -1,0 +1,8 @@
+torch
+transformers
+deepspeed
+git+https://github.com/huggingface/peft.git
+colorlog
+requests
+pillow
+numpy

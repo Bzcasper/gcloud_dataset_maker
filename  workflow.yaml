@@ -1,0 +1,21 @@
+# workflow.yaml
+# Replace URLs with actual deployed function URLs
+main:
+  steps:
+  - scrape:
+      call: http.get
+      args:
+        url: "https://REGION-PROJECT.cloudfunctions.net/scrape_data?num_images=50"
+      result: scrape_result
+  - clean:
+      call: http.get
+      args:
+        url: "https://REGION-PROJECT.cloudfunctions.net/clean_data"
+      result: clean_result
+  - train:
+      call: http.get
+      args:
+        url: "https://REGION-PROJECT.cloudfunctions.net/trigger_training"
+      result: train_result
+  - return_result:
+      return: "Pipeline completed: Scrape: ${scrape_result.body}, Clean: ${clean_result.body}, Train: ${train_result.body}"
